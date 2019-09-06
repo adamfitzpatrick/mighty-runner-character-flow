@@ -1,0 +1,252 @@
+openapi: "3.0.1"
+info:
+  title: "${environment}-mighty-runner-character-flow"
+  version: "0.1.0"
+paths:
+  /character:
+    get:
+      operationId: "GET_character"
+      security:
+      - authorizer: []
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            X-Content-Type-Options:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  schema:
+                    $ref: "#/components/schemas/Character"
+        401:
+          description: "401 response"
+          content: {}
+        500:
+          description: "500 response"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${get-lambda_invoke_arn}"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            ACCESS-CONTROL-ALLOW-ORIGIN:
+              schema:
+                type: "string"
+            ACCESS-CONTROL-ALLOW-HEADERS:
+              schema:
+                type: "string"
+            ACCESS-CONTROL-ALLOW-METHODS:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.ACCESS-CONTROL-ALLOW-HEADERS: "'authorization'"
+              method.response.header.ACCESS-CONTROL-ALLOW-ORIGIN: "'*'"
+              method.response.header.ACCESS-CONTROL-ALLOW-METHODS: "'GET,PUT,OPTIONS'"
+            responseTemplates:
+              application/json: "{ \"statusCode\": 200 }"
+        passthroughBehavior: "never"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /character/{id}:
+    parameters:
+    - name: "id"
+      in: "path"
+      required: true
+      schema:
+        type: "string"
+    get:
+      operationId: "GET_character_id"
+      security:
+      - authorizer: []
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: "string"
+            X-Content-Type-Options:
+              schema:
+                type: "string"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Character"
+        401:
+          description: "401 response"
+          content: {}
+        404:
+          description: "404 response"
+          content: {}
+        500:
+          description: "500 response"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${get-lambda_invoke_arn}"
+    put:
+      operationId: "PUT_character_id"
+      security:
+      - authorizer: []
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Character"
+        required: true
+      responses:
+        202:
+          description: "202 response"
+          content: {}
+        400:
+          description: "400 response"
+          content: {}
+        401:
+          description: "401 response"
+          content: {}
+        500:
+          description: "500 response"
+          content: {}
+      x-amazon-apigateway-integration:
+        type: "aws_proxy"
+        httpMethod: "POST"
+        uri: "${enqueue-lambda_invoke_arn}"
+    options:
+      responses:
+        200:
+          description: "200 response"
+          headers:
+            ACCESS-CONTROL-ALLOW-ORIGIN:
+              schema:
+                type: "string"
+            ACCESS-CONTROL-ALLOW-HEADERS:
+              schema:
+                type: "string"
+            ACCESS-CONTROL-ALLOW-METHODS:
+              schema:
+                type: "string"
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.ACCESS-CONTROL-ALLOW-HEADERS: "'authorization'"
+              method.response.header.ACCESS-CONTROL-ALLOW-ORIGIN: "'*'"
+              method.response.header.ACCESS-CONTROL-ALLOW-METHODS: "'GET,PUT,OPTIONS'"
+            responseTemplates:
+              application/json: "{ \"statusCode\": 200 }"
+        passthroughBehavior: "never"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+components:
+  schemas:
+    Character:
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        metatype:
+          type: "string"
+        ethnicity:
+          type: "string"
+        brief:
+          type: "string"
+        description:
+          type: "string"
+        sex:
+          type: "string"
+        age:
+          type: "string"
+        height:
+          type: "string"
+        weight:
+          type: "string"
+        streetCred:
+          type: "string"
+        notoriety:
+          type: "string"
+        publicAwareness:
+          type: "string"
+        karma:
+          type: "string"
+        lifetimeKarma:
+          type: "string"
+        attributes:
+          $ref: "#/components/schemas/Attributes"
+        notes:
+          type: "array"
+          items:
+            type: "string"
+    Attributes:
+      required:
+      - "agility"
+      - "body"
+      - "charisma"
+      - "edge"
+      - "intuition"
+      - "logic"
+      - "reaction"
+      - "strength"
+      - "willpower"
+      type: "object"
+      properties:
+        body:
+          type: "number"
+        agility:
+          type: "number"
+        reaction:
+          type: "number"
+        strength:
+          type: "number"
+        willpower:
+          type: "number"
+        logic:
+          type: "number"
+        intuition:
+          type: "number"
+        charisma:
+          type: "number"
+        edge:
+          type: "number"
+  securitySchemes:
+    authorizer:
+      type: "apiKey"
+      in: "header"
+      name: "Authorization"
+      x-amazon-apigateway-authtype: "oauth2"
+      x-amazon-apigateway-authorizer:
+        type: "token"
+        authorizerUri: "${authorizer_invoke_arn}"
+        authorizerCredentials: "${authorizer_invoke_role_arn}"
+        identityValidationExpression: "^Bearer [-0-9a-zA-z\\.]*$"
+        authorizerResultTtlInSeconds: 60
