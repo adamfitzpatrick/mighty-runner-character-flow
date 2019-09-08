@@ -5,7 +5,7 @@ variable "region" {
 
 variable "flow" {
     description = "API flow name used to populate resource names"
-    default     = "mighty-runner-character-flow"
+    default     = "mighty-runner-character"
 }
 
 variable "environment" {

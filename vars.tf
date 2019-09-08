@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "flow" {
-    default = "mighty-runner-character-flow"
+    default = "mighty-runner-character"
 }
 
 variable "environment" {

@@ -27,8 +27,9 @@ module token_table {
 }
 
 module authorizer-lambda {
-    source = "../../mighty-runner-authorizer/infrastructure"
+    source = "../mighty-runner-authorizer/infrastructure"
 
+    function_name    = "${var.environment}-${var.flow}-authorizer"
     dynamo_table_arn        = "${module.token_table.dynamo_table_arn}"
     table_name              = "${module.token_table.dynamo_table_name}"
     primary_key_column_name = "${local.tokenTableHashKey}"
@@ -42,16 +43,18 @@ module update_topic {
 }
 
 module enqueue-lambda {
-    source = "../../mighty-runner-enqueue-lambda/infrastructure"
+    source = "../mighty-runner-enqueue-lambda/infrastructure"
 
+    function_name    = "${var.environment}-${var.flow}-enqueue-lambda"
     topic_arn        = "${module.update_topic.topic_arn}"
     auth_token_field = "${local.userId}"
     object_id_field  = "${local.objectId}"
 }
 
 module persist-lambda {
-    source = "../../mighty-runner-persist-lambda/infrastructure"
+    source = "../mighty-runner-persist-lambda/infrastructure"
 
+    function_name    = "${var.environment}-${var.flow}-persist-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"
     topic_arn               = "${module.update_topic.topic_arn}"
     table_name              = "${var.table_name}"
@@ -60,8 +63,9 @@ module persist-lambda {
 }
 
 module get-lambda {
-    source = "../../mighty-runner-get-lambda/infrastructure"
+    source = "../mighty-runner-get-lambda/infrastructure"
 
+    function_name    = "${var.environment}-${var.flow}-get-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"
     table_name              = "${var.table_name}"
     primary_key_column_name = "${local.userId}"
