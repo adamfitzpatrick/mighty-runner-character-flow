@@ -52,9 +52,24 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
   body        = "${data.template_file.oas.rendered}"
 }
 
+resource "aws_api_gateway_stage" "api_gateway_stage" {
+  stage_name            = "${var.environment}"
+  rest_api_id           = "${aws_api_gateway_rest_api.api_gateway.id}"
+  deployment_id         = "${aws_api_gateway_deployment.api_gateway.id}"
+
+  access_log_settings {
+    destination_arn = "${aws_cloudwatch_log_group.api_gateway_cloudwatch.arn}"
+    format          = "${file("${path.module}/log-format.json")}"
+  }
+}
+
 resource "aws_api_gateway_deployment" "api_gateway" {
   rest_api_id = "${aws_api_gateway_rest_api.api_gateway.id}"
-  stage_name  = "${var.environment}"
+  stage_name  = ""
+
+  lifecycle {
+    create_before_destroy = true
+  }
 
   variables {
     deployed_at = "${timestamp()}"

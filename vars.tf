@@ -13,7 +13,7 @@ variable "environment" {
 
 variable "table_name" {
     description = "Name of dynamo table"
-    default     = "mighty-runner-character-flow-table"
+    default     = "mighty-runner-character"
 }
 
 variable "auth_token_table_name" {

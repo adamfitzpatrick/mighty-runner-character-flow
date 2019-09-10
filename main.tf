@@ -9,7 +9,7 @@ module character_table {
     source = "./infrastructure/dynamo"
 
     environment    = "${var.environment}"
-    table_name     = "mighty-runner-character-flow-table"
+    table_name     = "${var.table_name}"
     hash_key       = "${local.userId}"
     range_key      = "${local.objectId}"
     read_capacity  = 5
@@ -57,7 +57,7 @@ module persist-lambda {
     function_name    = "${var.environment}-${var.flow}-persist-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"
     topic_arn               = "${module.update_topic.topic_arn}"
-    table_name              = "${var.table_name}"
+    table_name              = "${var.environment}-${var.table_name}"
     primary_key_column_name = "${local.userId}"
     sort_key_column_name    = "${local.objectId}"
 }
@@ -67,7 +67,7 @@ module get-lambda {
 
     function_name    = "${var.environment}-${var.flow}-get-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"
-    table_name              = "${var.table_name}"
+    table_name              = "${var.environment}-${var.table_name}"
     primary_key_column_name = "${local.userId}"
     sort_key_column_name    = "${local.objectId}"
 }
