@@ -27,7 +27,7 @@ module token_table {
 }
 
 module authorizer-lambda {
-    source = "../mighty-runner-authorizer/infrastructure"
+    source = "github.com/adamfitzpatrick/mighty-runner-authorizer.git//infrastructure"
 
     function_name    = "${var.environment}-${var.flow}-authorizer"
     dynamo_table_arn        = "${module.token_table.dynamo_table_arn}"
@@ -43,7 +43,7 @@ module update_topic {
 }
 
 module enqueue-lambda {
-    source = "../mighty-runner-enqueue-lambda/infrastructure"
+    source = "github.com/adamfitzpatrick/mighty-runner-enqueue-lambda.git//infrastructure"
 
     function_name    = "${var.environment}-${var.flow}-enqueue-lambda"
     topic_arn        = "${module.update_topic.topic_arn}"
@@ -52,7 +52,7 @@ module enqueue-lambda {
 }
 
 module persist-lambda {
-    source = "../mighty-runner-persist-lambda/infrastructure"
+    source = "github.com/adamfitzpatrick/mighty-runner-persist-lambda.git//infrastructure"
 
     function_name    = "${var.environment}-${var.flow}-persist-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"
@@ -63,7 +63,7 @@ module persist-lambda {
 }
 
 module get-lambda {
-    source = "../mighty-runner-get-lambda/infrastructure"
+    source = "github.com/adamfitzpatrick/mighty-runner-get-lambda.git//infrastructure"
 
     function_name    = "${var.environment}-${var.flow}-get-lambda"
     dynamo_table_arn        = "${module.character_table.dynamo_table_arn}"

@@ -249,4 +249,4 @@ components:
         authorizerUri: "${authorizer_invoke_arn}"
         authorizerCredentials: "${authorizer_invoke_role_arn}"
         identityValidationExpression: "^Bearer [-0-9a-zA-z\\.]*$"
-        authorizerResultTtlInSeconds: 60
+        authorizerResultTtlInSeconds: 300
