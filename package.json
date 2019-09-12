@@ -1,25 +1,27 @@
 {
-    "name": "mighty-runner-character-flow",
-    "version": "0.1.0",
-    "description": "API flow for providing and storing Shadowrun characters",
-    "scripts": {
-      "deploy": "terraform apply --auto-approve",
-      "terraform-init": "terraform init --backend-config=\"bucket=$BUCKET\" --backend-config=\"key=$KEY\" --backend-config=\"region=$REGION\"",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/adamfitzpatrick/mighty-runner-character-flow.git"
-    },
-    "author": "Adam Fitzpatrick",
-    "license": "MIT",
-    "bugs": {
-      "url": "https://github.com/adamfitzpatrick/mighty-runner-character-flow/issues"
-    },
-    "homepage": "https://github.com/adamfitzpatrick/mighty-runner-character-flow#readme",
-    "terraform": {
-      "region": "us-west-2",
-      "bucket": "mighty-runner-terraform",
-      "key": "mighty-runner-character-flow.tfstate"
-    }
-  }
+  "name": "mighty-runner-character-flow",
+  "version": "0.1.0",
+  "description": "API flow for providing and storing Shadowrun characters",
+  "scripts": {
+    "deploy": "terraform apply --auto-approve",
+    "loadtest": "artillery run loadtest.yml",
+    "terraform-init": "terraform init --backend-config=\"bucket=$BUCKET\" --backend-config=\"key=$KEY\" --backend-config=\"region=$REGION\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamfitzpatrick/mighty-runner-character-flow.git"
+  },
+  "author": "Adam Fitzpatrick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamfitzpatrick/mighty-runner-character-flow/issues"
+  },
+  "homepage": "https://github.com/adamfitzpatrick/mighty-runner-character-flow#readme",
+  "terraform": {
+    "region": "us-west-2",
+    "bucket": "mighty-runner-terraform",
+    "key": "mighty-runner-character-flow.tfstate"
+  },
+  "devDependencies": {}
+}

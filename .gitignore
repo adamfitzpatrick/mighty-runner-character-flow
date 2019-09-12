@@ -1,2 +1,5 @@
 .terraform
 yarn-error.log
+jmeter-results.log
+jmeter.log
+jmeter/results

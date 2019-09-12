@@ -76,6 +76,25 @@ resource "aws_api_gateway_deployment" "api_gateway" {
   }
 }
 
+resource "aws_api_gateway_usage_plan" "usage_plan" {
+  name = "${var.environment}-${var.flow}-usage-plan"
+
+  api_stages {
+    api_id = "${aws_api_gateway_rest_api.api_gateway.id}"
+    stage  = "${aws_api_gateway_stage.api_gateway_stage.stage_name}"
+  }
+
+  quota_settings {
+    limit  = 10000
+    period = "MONTH"
+  }
+
+  throttle_settings {
+    burst_limit = 5
+    rate_limit  = 10
+  }
+}
+
 resource "aws_iam_role" "api_gateway" {
   name               = "api-gateway-account-role"
   assume_role_policy = "${data.template_file.api_assume_role_policy.rendered}"
