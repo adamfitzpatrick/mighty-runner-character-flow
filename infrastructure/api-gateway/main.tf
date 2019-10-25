@@ -50,6 +50,10 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
   name        = "${var.environment}-${var.flow}-api"
   description = "API flow for providing and storing Shadowrun characters"
   body        = "${data.template_file.oas.rendered}"
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_stage" "api_gateway_stage" {
