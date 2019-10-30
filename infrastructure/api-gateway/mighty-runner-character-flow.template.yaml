@@ -38,9 +38,6 @@ paths:
         uri: "${get-lambda_invoke_arn}"
     options:
       operationId: "OPTIONS_character"
-      security:
-      - authorizer: []
-      - apiKey: []
       responses:
         200:
           description: "200 response"
@@ -146,9 +143,6 @@ paths:
         uri: "${enqueue-lambda_invoke_arn}"
     options:
       operationId: "OPTIONS_character"
-      security:
-      - authorizer: []
-      - apiKey: []
       responses:
         200:
           description: "200 response"
