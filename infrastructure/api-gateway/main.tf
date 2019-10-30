@@ -56,6 +56,17 @@ resource "aws_api_gateway_rest_api" "api_gateway" {
   }
 }
 
+resource "null_resource" "api-key-source" {
+  triggers {
+    build_number = "${timestamp()}"
+  }
+
+  provisioner "local-exec" {
+    command = "aws apigateway update-rest-api --rest-api-id ${aws_api_gateway_rest_api.api_gateway.id} --patch-operations op=replace,path=/apiKeySource,value=AUTHORIZER --region ${var.region}"
+    interpreter = [ "/bin/bash", "-c" ]
+  }
+}
+
 resource "aws_api_gateway_stage" "api_gateway_stage" {
   stage_name            = "${var.environment}"
   rest_api_id           = "${aws_api_gateway_rest_api.api_gateway.id}"
@@ -68,6 +79,7 @@ resource "aws_api_gateway_stage" "api_gateway_stage" {
 }
 
 resource "aws_api_gateway_deployment" "api_gateway" {
+  depends_on = ["null_resource.api-key-source"]
   rest_api_id = "${aws_api_gateway_rest_api.api_gateway.id}"
   stage_name  = ""
 
@@ -77,6 +89,17 @@ resource "aws_api_gateway_deployment" "api_gateway" {
 
   variables {
     deployed_at = "${timestamp()}"
+  }
+}
+
+resource "aws_api_gateway_method_settings" "item-aid-persistence_api_gateway_settings" {
+  rest_api_id = "${aws_api_gateway_rest_api.api_gateway.id}"
+  stage_name  = "${aws_api_gateway_stage.api_gateway_stage.stage_name}"
+  method_path = "*/*"
+
+  settings {
+    metrics_enabled      = true
+    logging_level        = "INFO"
   }
 }
 

@@ -23,5 +23,8 @@
     "bucket": "mighty-runner-terraform",
     "key": "mighty-runner-character-flow.tfstate"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }

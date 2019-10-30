@@ -3,3 +3,4 @@ yarn-error.log
 jmeter-results.log
 jmeter.log
 jmeter/results
+node_modules

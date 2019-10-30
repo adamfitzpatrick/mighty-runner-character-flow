@@ -38,7 +38,7 @@
                 <collectionProp name="Arguments.arguments">
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">{&quot;effects&quot;:[{&quot;name&quot;:&quot;Effect 1&quot;,&quot;active&quot;:true,&quot;id&quot;:&quot;1&quot;,&quot;value&quot;:1,&quot;target&quot;:[&quot;attributes&quot;,&quot;agility&quot;]},{&quot;name&quot;:&quot;Effect 2&quot;,&quot;active&quot;:false,&quot;id&quot;:&quot;2&quot;,&quot;value&quot;:145,&quot;target&quot;:[&quot;target&quot;,&quot;1&quot;]}],&quot;specialAttributes&quot;:{},&quot;userId&quot;:&quot;5ZBbOZJtFNs2esIVciyJ&quot;,&quot;attributes&quot;:{&quot;agility&quot;:{&quot;name&quot;:&quot;Agility&quot;,&quot;maximum&quot;:6,&quot;asTarget&quot;:[&quot;attributes&quot;,&quot;agility&quot;],&quot;shortName&quot;:&quot;agi&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:5}}},&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;Character&quot;,&quot;gear&quot;:[{&quot;name&quot;:&quot;Cyberarm&quot;,&quot;description&quot;:&quot;with enhanced agility&quot;,&quot;effects&quot;:[&quot;1&quot;],&quot;id&quot;:&quot;gear-1&quot;,&quot;cost&quot;:&quot;2600&quot;,&quot;availability&quot;:&quot;12R&quot;}]}</stringProp>
+                    <stringProp name="Argument.value">{&quot;userId&quot;:&quot;5ZBbOZJtFNs2esIVciyJ&quot;,&quot;id&quot;:&quot;1&quot;,&quot;personalData&quot;:{&quot;publicAwareness&quot;:3,&quot;karma&quot;:2,&quot;ethnicity&quot;:&quot;North African&quot;,&quot;gender&quot;:&quot;Male&quot;,&quot;streetCred&quot;:1,&quot;name&quot;:&quot;Bob the Bad Thing&quot;,&quot;notoriety&quot;:2,&quot;weight&quot;:&quot;165&quot;,&quot;metatype&quot;:&quot;Dwarf&quot;,&quot;totalKarma&quot;:32,&quot;age&quot;:&quot;34&quot;,&quot;height&quot;:&quot;4&apos; 8\&quot;&quot;},&quot;attributes&quot;:{&quot;reaction&quot;:{&quot;name&quot;:&quot;Reaction&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;rea&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;reaction&quot;]},&quot;strength&quot;:{&quot;name&quot;:&quot;Strength&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;str&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;strength&quot;]},&quot;willpower&quot;:{&quot;name&quot;:&quot;Willpower&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;wil&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;willpower&quot;]},&quot;logic&quot;:{&quot;name&quot;:&quot;Logic&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;log&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;logic&quot;]},&quot;agility&quot;:{&quot;name&quot;:&quot;Agility&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;agi&quot;,&quot;value&quot;:{&quot;initial&quot;:2,&quot;chargen&quot;:5},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;agility&quot;]},&quot;body&quot;:{&quot;name&quot;:&quot;Body&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;agi&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;body&quot;]},&quot;intuition&quot;:{&quot;name&quot;:&quot;Intuition&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;int&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:3},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;intuition&quot;]},&quot;charisma&quot;:{&quot;name&quot;:&quot;Charisma&quot;,&quot;maximum&quot;:6,&quot;shortName&quot;:&quot;cha&quot;,&quot;value&quot;:{&quot;initial&quot;:1,&quot;chargen&quot;:7},&quot;asEffectTarget&quot;:[&quot;attributes&quot;,&quot;charisma&quot;]}},&quot;specialAttributes&quot;:{},&quot;gear&quot;:[{&quot;effects&quot;:[&quot;1&quot;],&quot;cost&quot;:2600,&quot;name&quot;:&quot;Cyberarm&quot;,&quot;description&quot;:&quot;with enhanced agility&quot;,&quot;id&quot;:&quot;gear-1&quot;,&quot;availability&quot;:&quot;12R&quot;,&quot;value&quot;:{&quot;rating&quot;:2}}],&quot;effects&quot;:[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;Effect 1&quot;,&quot;description&quot;:&quot;Effective&quot;,&quot;target&quot;:[&quot;attributes&quot;,&quot;agility&quot;],&quot;active&quot;:true,&quot;value&quot;:2}]}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                   </elementProp>
                 </collectionProp>
@@ -47,7 +47,7 @@
               <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/dev/character/1</stringProp>
+              <stringProp name="HTTPSampler.path">/character/1</stringProp>
               <stringProp name="HTTPSampler.method">PUT</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -66,7 +66,7 @@
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer ${__P(token)}</stringProp>
+                  <stringProp name="Header.value">Bearer ${__P(token,5ZBbOZJtFNs2esIVciyJ)}</stringProp>
                 </elementProp>
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Content-Type</stringProp>
@@ -89,7 +89,7 @@
               <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/dev/character/1</stringProp>
+              <stringProp name="HTTPSampler.path">/character/1</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -101,7 +101,7 @@
             </HTTPSamplerProxy>
             <hashTree/>
             <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-              <stringProp name="ConstantTimer.delay">1000</stringProp>
+              <stringProp name="ConstantTimer.delay">10</stringProp>
             </ConstantTimer>
             <hashTree/>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -144,7 +144,7 @@
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Bearer ${__P(token)}</stringProp>
+                  <stringProp name="Header.value">Bearer ${__P(token,5ZBbOZJtFNs2esIVciyJ)}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -157,7 +157,7 @@
               <stringProp name="HTTPSampler.port"></stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/dev/character</stringProp>
+              <stringProp name="HTTPSampler.path">/character</stringProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -253,7 +253,7 @@
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments"/>
         </elementProp>
-        <stringProp name="HTTPSampler.domain">${__P(host,nhu08qps74.execute-api.us-west-2.amazonaws.com)}</stringProp>
+        <stringProp name="HTTPSampler.domain">${__P(host,dev-api.mighty-runner.stepinto.io)}</stringProp>
         <stringProp name="HTTPSampler.port"></stringProp>
         <stringProp name="HTTPSampler.protocol">https</stringProp>
         <stringProp name="HTTPSampler.contentEncoding"></stringProp>

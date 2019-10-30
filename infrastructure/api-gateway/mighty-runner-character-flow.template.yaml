@@ -2,13 +2,13 @@ openapi: "3.0.1"
 info:
   title: "${environment}-mighty-runner-character-flow"
   version: "0.1.0"
-x-amazon-apigateway-api-key-source: AUTHORIZER
 paths:
   /character:
     get:
       operationId: "GET_character"
       security:
       - authorizer: []
+      - apiKey: []
       responses:
         200:
           description: "200 response"
@@ -37,6 +37,10 @@ paths:
         httpMethod: "POST"
         uri: "${get-lambda_invoke_arn}"
     options:
+      operationId: "OPTIONS_character"
+      security:
+      - authorizer: []
+      - apiKey: []
       responses:
         200:
           description: "200 response"
@@ -76,6 +80,7 @@ paths:
       operationId: "GET_character_id"
       security:
       - authorizer: []
+      - apiKey: []
       responses:
         200:
           description: "200 response"
@@ -105,6 +110,9 @@ paths:
         uri: "${get-lambda_invoke_arn}"
     put:
       operationId: "PUT_character_id"
+      security:
+      - authorizer: []
+      - apiKey: []
       security:
       - authorizer: []
       parameters:
@@ -137,6 +145,10 @@ paths:
         httpMethod: "POST"
         uri: "${enqueue-lambda_invoke_arn}"
     options:
+      operationId: "OPTIONS_character"
+      security:
+      - authorizer: []
+      - apiKey: []
       responses:
         200:
           description: "200 response"
@@ -240,6 +252,10 @@ components:
         edge:
           type: "number"
   securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
     authorizer:
       type: "apiKey"
       in: "header"
