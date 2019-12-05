@@ -1,3 +1,7 @@
+locals {
+  invoke_arn_prefix = "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.region}:${var.account_id}:function:"
+}
+
 data "template_file" "oas" {
   template = "${file("${path.module}/mighty-runner-character-flow.template.yaml")}"
 
@@ -5,7 +9,7 @@ data "template_file" "oas" {
     environment                = "${var.environment}"
     get-lambda_invoke_arn      = "${var.get-lambda_invoke_arn}"
     enqueue-lambda_invoke_arn  = "${var.enqueue-lambda_invoke_arn}"
-    authorizer_invoke_arn      = "${var.authorizer_invoke_arn}"
+    authorizer_invoke_arn      = "${local.invoke_arn_prefix}${var.authorizer_function_name}/invocations"
     authorizer_invoke_role_arn = "${aws_iam_role.authorizer-invoke.arn}"
   }
 }
@@ -25,7 +29,7 @@ data "template_file" "authorizer_invoke_policy" {
 resource "aws_lambda_permission" "allow_apigateway_authorizer" {
   statement_id  = "AllowAthorizerExecutionFromApiGateway"
   action        = "lambda:InvokeFunction"
-  function_name = "${var.environment}-${var.flow}-authorizer"
+  function_name = "${var.environment}-mighty-runner-authorizer"
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*/*"
 }
@@ -46,16 +50,6 @@ resource "aws_lambda_permission" "allow_apigateway_enqueue-lambda" {
   source_arn    = "${aws_api_gateway_rest_api.api_gateway.execution_arn}/*/*/*"
 }
 
-resource "aws_api_gateway_rest_api" "api_gateway" {
-  name        = "${var.environment}-${var.flow}-api"
-  description = "API flow for providing and storing Shadowrun characters"
-  body        = "${data.template_file.oas.rendered}"
-
-  endpoint_configuration {
-    types = ["REGIONAL"]
-  }
-}
-
 resource "null_resource" "api-key-source" {
   triggers {
     build_number = "${timestamp()}"
@@ -67,10 +61,21 @@ resource "null_resource" "api-key-source" {
   }
 }
 
+resource "aws_api_gateway_rest_api" "api_gateway" {
+  name           = "${var.environment}-${var.flow}-api"
+  description    = "API flow for providing and storing Shadowrun characters"
+  body           = "${data.template_file.oas.rendered}"
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
+}
+
 resource "aws_api_gateway_stage" "api_gateway_stage" {
-  stage_name            = "${var.environment}"
-  rest_api_id           = "${aws_api_gateway_rest_api.api_gateway.id}"
-  deployment_id         = "${aws_api_gateway_deployment.api_gateway.id}"
+  stage_name           = "${var.environment}"
+  rest_api_id          = "${aws_api_gateway_rest_api.api_gateway.id}"
+  deployment_id        = "${aws_api_gateway_deployment.api_gateway.id}"
+  xray_tracing_enabled = true
 
   access_log_settings {
     destination_arn = "${aws_cloudwatch_log_group.api_gateway_cloudwatch.arn}"

@@ -4,3 +4,4 @@ jmeter-results.log
 jmeter.log
 jmeter/results
 node_modules
+*.backup

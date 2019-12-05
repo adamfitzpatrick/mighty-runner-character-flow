@@ -1,3 +1,7 @@
+variable "account_id" {
+    description = "Account into which this API is to be deployed"
+}
+
 variable "region" {
     description = "Region for use with AWS"
     default     = "us-west-2"
@@ -13,8 +17,8 @@ variable "environment" {
     default     = "dev"
 }
 
-variable "authorizer_invoke_arn" {
-    description = "ARN for invoking the authorizer-lambda"
+variable "authorizer_function_name" {
+    description = "Lambda function name to be invoked as an authorizer"
 }
 
 variable "get-lambda_invoke_arn" {

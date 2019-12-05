@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 locals {
   userId            = "userId"
   objectId          = "id"
@@ -24,15 +26,6 @@ module token_table {
     hash_key       = "${local.tokenTableHashKey}"
     read_capacity  = 5
     write_capacity = 5
-}
-
-module authorizer-lambda {
-    source = "github.com/adamfitzpatrick/mighty-runner-authorizer.git//infrastructure"
-
-    function_name    = "${var.environment}-${var.flow}-authorizer"
-    dynamo_table_arn        = "${module.token_table.dynamo_table_arn}"
-    table_name              = "${module.token_table.dynamo_table_name}"
-    primary_key_column_name = "${local.tokenTableHashKey}"
 }
 
 module update_topic {
@@ -75,7 +68,8 @@ module get-lambda {
 module api_gateway {
     source = "./infrastructure/api-gateway"
 
-    authorizer_invoke_arn     = "${module.authorizer-lambda.invoke_arn}"
+    account_id                = "${data.aws_caller_identity.current.account_id}"
+    authorizer_function_name  = "${var.environment}-mighty-runner-authorizer"
     get-lambda_invoke_arn     = "${module.get-lambda.invoke_arn}"
     enqueue-lambda_invoke_arn = "${module.enqueue-lambda.invoke_arn}"
 
